@@ -1,3 +1,5 @@
-export default {
-    base: '/weather-widget/',
-  };
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  base: '/weather-widget/',
+});
