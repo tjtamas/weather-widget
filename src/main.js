@@ -2,6 +2,8 @@ import './style.css';
 import * as UI from './ui.js';
 import { fetchWeather } from './api.js';
 
+
+
 document.addEventListener('DOMContentLoaded', () => {
   
   const form = document.querySelector('#weather-form');

@@ -7,7 +7,6 @@ export function showError(message) {
   `;
 }
 
-
 export function renderWeather(data) {
 console.log("MAIN BETÖLTÖTT");
 
