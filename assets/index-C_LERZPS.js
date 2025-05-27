@@ -1,0 +1,10 @@
+(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))n(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const c of r.addedNodes)c.tagName==="LINK"&&c.rel==="modulepreload"&&n(c)}).observe(document,{childList:!0,subtree:!0});function s(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function n(e){if(e.ep)return;e.ep=!0;const r=s(e);fetch(e.href,r)}})();function i(o){const t=document.querySelector("#weather-output");t&&(t.innerHTML=`
+    <p style="color: red;">${o}</p>
+  `)}function a(o){console.log("MAIN BETÖLTÖTT");const t=document.querySelector("#weather-output");if(!t)return;const s=o.name,n=Math.round(o.main.temp),e=o.weather[0].description,r=o.weather[0].icon;t.innerHTML=`
+    <div class="bg-blue-50 p-4 rounded-lg shadow-inner">
+      <h2 class="text-2xl font-semibold text-blue-700">${s}</h2>
+      <p class="text-3xl font-bold mb-2">${n} °C</p>
+      <img class="mx-auto w-20 h-20" src="https://openweathermap.org/img/wn/${r}@2x.png" alt="${e}" />
+      <p class="capitalize text-gray-700">${e}</p>
+    </div>
+  `}const u="636dca5e4f3918eb0e2e5f8c95fb9adf",l="https://api.openweathermap.org/data/2.5/weather";async function d(o){try{const t=await fetch(`${l}?q=${encodeURIComponent(o)}&appid=${u}&units=metric&lang=hu`);if(!t.ok)throw new Error(`Hiba: ${t.status} – ${t.statusText}`);return await t.json()}catch(t){return console.error("Nem sikerült lekérni az időjárási adatokat:",t),null}}document.addEventListener("DOMContentLoaded",()=>{const o=document.querySelector("#weather-form"),t=document.querySelector("#city-input");o.addEventListener("submit",async s=>{s.preventDefault();const n=t.value.trim();if(n){const e=await d(n);e?a(e):i("A megadott város nem található.")}})});
